@@ -31,7 +31,7 @@ var MaoYanService   = {
     },
     //查出电影详情
     getMovieDetail : function(movieId){
-        return  fetch(BaseUrl+"/movie/list.json?type=hot&offset=0&limit=1000")
+        return  fetch(BaseUrl+"/movie/"+movieId+".json")
                     .then(status)
                     .then(json);;
     }
