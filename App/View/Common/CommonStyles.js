@@ -15,6 +15,7 @@ var CommonStyles = StyleSheet.create({
         paddingTop: 65
     },
 
+
     fx_row : {
         flexDirection : "row"
     },

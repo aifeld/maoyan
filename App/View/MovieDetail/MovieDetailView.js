@@ -6,6 +6,7 @@ var {
     Image,
     ListView,
     ActivityIndicatorIOS,
+    ScrollView,
     TouchableHighlight
     } = React;
 
@@ -31,7 +32,6 @@ var MovieDetailView = React.createClass({
     _handleNextButtonPress: function(nextRoute) {
         this.props.navigator.push(nextRoute);
     },
-
 
     getInitialState: function() {
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -149,7 +149,6 @@ var MovieDetailView = React.createClass({
 
             <View style={[cmStyles.pd_lr_15,styles.dt_center]}>
 
-
             </View>
 
         )
@@ -159,7 +158,7 @@ var MovieDetailView = React.createClass({
     _renderComments : function(){
         return (
             <View style={[cmStyles.pd_lr_15,styles.dt_bottom]}>
-                <ListView
+                <ListView   automaticallyAdjustContentInsets={false}
                     dataSource={this.state.dataSource}
                     renderRow={this._renderRow.bind(this)}
                     >
@@ -229,14 +228,17 @@ var MovieDetailView = React.createClass({
         var renderComments = this._renderComments();
 
         return (
-            <View style={cmStyles.container}>
+            <ScrollView horizontal={false}
+                        scrollEventThrottle={200}
+                        contentInset={{top: 0}}
+                >
 
                 {renderTop}
 
                 {renderMiddle}
 
                 {renderComments}
-            </View>
+            </ScrollView>
 
         );
 
