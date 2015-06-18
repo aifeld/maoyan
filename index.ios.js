@@ -10,7 +10,7 @@ var {
     StyleSheet,
     Text,
     NavigatorIOS,
-    ListView,
+    TabBarIOS,
     View,
     } = React;
 
@@ -24,15 +24,13 @@ var maoyan = React.createClass({
     //定义类的静态方法
     statics : {
 
-
-
     },
 
     //组件挂载之前
     getInitialState : function(){
         console.log("组件挂载.... 之前 getInitialState");
         return {
-            "api" : "没有"
+            selectedTab : "tabMovie"
         }
     },
     //初始化渲染之后
@@ -82,22 +80,87 @@ var maoyan = React.createClass({
         };
     },
 
-    render: function() {
-        console.log("render....");
-        var api = this.state.api;
+    //render: function() {
+    //    console.log("render....");
+    //    var api = this.state.api;
+    //
+    //    return (
+    //        <View style={styles.container}>
+    //            <NavigatorIOS style={styles.nav}
+    //                          initialRoute={{
+    //          component : IndexView,
+    //          title : "首页",
+    //          passProps : {test : "111"},
+    //          rightButtonTitle: '加载'
+    //        }}
+    //
+    //                />
+    //        </View>
+    //    );
+    //}
+
+    _renderContent: function(color: string, pageText: string) {
+        //return (
+        //    <View style={[styles.tabContent, {backgroundColor: color}]}>
+        //        <Text style={styles.tabText}>{pageText}</Text>
+        //        <Text style={styles.tabText}>{this.state.presses} re-renders of the More tab</Text>
+        //    </View>
+        //);
 
         return (
-            <View style={styles.container}>
-                <NavigatorIOS style={styles.nav}
-                              initialRoute={{
-              component : IndexView,
-              title : "首页",
-              passProps : {test : "111"},
-              rightButtonTitle: '加载'
-            }}
+                <View style={styles.container}>
+                    <NavigatorIOS style={styles.nav}
+                                  initialRoute={{
+                  component : IndexView,
+                  title : "首页",
+                  passProps : {test : "111"},
+                  rightButtonTitle: '加载'
+                }}
 
-                    />
-            </View>
+                        />
+                </View>
+            );
+
+    },
+    render: function() {
+        console.log("render....");
+
+        return (
+
+          <TabBarIOS>
+              <TabBarIOS.Item
+                      title="电影"
+                      iconName="history"
+                      selectedIconName="history"
+                    badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
+                    selected={this.state.selectedTab === 'tabMovie'}
+                    onPress = {()=> this.setState({selectedTab : "tabMovie",notifCount: this.state.notifCount + 1})}
+                  >
+                  {this._renderContent('#414A8C', '电影')}
+              </TabBarIOS.Item>
+
+              <TabBarIOS.Item
+                  systemIcon="bookmarks"
+                  title="影院"
+                  badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
+                  selected={this.state.selectedTab === 'tabCinema'}
+                  onPress = {()=> this.setState({selectedTab : "tabCinema",notifCount: this.state.notifCount + 1})}
+                  >
+                  {this._renderContent('#414A8C', '影院')}
+              </TabBarIOS.Item>
+
+              <TabBarIOS.Item
+                  systemIcon="history"
+                  title="发现"
+                  badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
+                  selected={this.state.selectedTab === 'tabDiscover'}
+                  onPress = {()=> this.setState({selectedTab : "tabDiscover",notifCount: this.state.notifCount + 1})}
+                  >
+                  {this._renderContent('#414A8C', '发现')}
+              </TabBarIOS.Item>
+
+          </TabBarIOS>
+
         );
     }
 });
@@ -111,6 +174,15 @@ var styles = StyleSheet.create({
     },
     nav : {
         flex : 1
+    },
+
+    tabContent: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    tabText: {
+        color: 'white',
+        margin: 50
     }
 
 });
