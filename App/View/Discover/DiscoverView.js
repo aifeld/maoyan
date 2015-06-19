@@ -19,7 +19,7 @@ var cmStyles = require("../Common/CommonStyles");
 var styles = require("./style");
 
 
-var IndexView = React.createClass({
+var DiscoverView = React.createClass({
 
     _handleBackButtonPress: function() {
         this.props.navigator.pop();
@@ -130,53 +130,53 @@ var IndexView = React.createClass({
         }
         if(movie.late){
             movieNewTag = (<View style={cmStyles.movieHotWrap}>
-                            <Text style={cmStyles.movieTag}>
-                                {movie.late  ? ("新"): null }
-                            </Text>
-                            </View>);
+                <Text style={cmStyles.movieTag}>
+                    {movie.late  ? ("新"): null }
+                </Text>
+            </View>);
         }
 
 
         return (
-                <View style={styles.movieRow}>
-                    <View style={styles.movieLeft}>
-                        <Image source={{uri:movie.img}}   style={styles.movieImage }  />
-                    </View>
+            <View style={styles.movieRow}>
+                <View style={styles.movieLeft}>
+                    <Image source={{uri:movie.img}}   style={styles.movieImage }  />
+                </View>
 
-                    <View style={styles.movieMiddle}>
-                        <View style={styles.movieTitle}>
-                            <Text   style={styles.movieTitleContent}>
-                                {movie.nm}
-                            </Text>
-                            {movieTag}
-                            {movieNewTag}
-
-                        </View>
-
-                        <Text numberOfLines={1} style={styles.movieDesc}>
-                            {movie.scm}
+                <View style={styles.movieMiddle}>
+                    <View style={styles.movieTitle}>
+                        <Text   style={styles.movieTitleContent}>
+                            {movie.nm}
                         </Text>
-                        <Text numberOfLines={1} style={styles.movieDesc}>
-                            今天{movie.cnms}家影院上映{movie.snum}场
-                        </Text>
+                        {movieTag}
+                        {movieNewTag}
 
                     </View>
 
-                    {/* 底部 */}
-                    <View style={styles.movieRight}>
+                    <Text numberOfLines={1} style={styles.movieDesc}>
+                        {movie.scm}
+                    </Text>
+                    <Text numberOfLines={1} style={styles.movieDesc}>
+                        今天{movie.cnms}家影院上映{movie.snum}场
+                    </Text>
 
-                        <Text style={styles.movieScore}>9.1分</Text>
+                </View>
 
-                        <View style={{flex : 1}}></View>
+                {/* 底部 */}
+                <View style={styles.movieRight}>
 
-                        <View style={styles.movieOpera} >
-                            <TouchableHighlight  onPress={ () =>  this._getTicket(movie) }
-                                                 style={[cmStyles.btn_outline,cmStyles.btn_outline_red]} underlayColor="#e54847">
-                                <Text style={cmStyles.btn_outline_red_text}>购票</Text>
-                            </TouchableHighlight>
-                        </View>
+                    <Text style={styles.movieScore}>9.1分</Text>
+
+                    <View style={{flex : 1}}></View>
+
+                    <View style={styles.movieOpera} >
+                        <TouchableHighlight  onPress={ () =>  this._getTicket(movie) }
+                                             style={[cmStyles.btn_outline,cmStyles.btn_outline_red]} underlayColor="#e54847">
+                            <Text style={cmStyles.btn_outline_red_text}>购票</Text>
+                        </TouchableHighlight>
                     </View>
                 </View>
+            </View>
 
         );
     },
@@ -195,4 +195,4 @@ var IndexView = React.createClass({
 
 
 
-module.exports = IndexView;
+module.exports = DiscoverView;
