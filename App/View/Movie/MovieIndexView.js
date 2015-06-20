@@ -2,7 +2,7 @@
 var React = require('react-native');
 var Swiper = require('react-native-swiper');
 var TimerMixin = require('react-timer-mixin');
-var RCTRefreshControl = require('RCTRefreshControl');
+//var RCTRefreshControl = require('RCTRefreshControl');
 
 var {
     StyleSheet,
@@ -52,14 +52,15 @@ var MovieIndexView = React.createClass({
     //首次渲染之后
     componentDidMount : function(){
         this._loadData();
-        RCTRefreshControl.configure({
-            node: this.refs['LIST_VIEW_REF'],
-            tintColor: '#e54847',
-            activityIndicatorViewColor: '#e54847'
-        }, () => {
-            this._loadData();
 
-        });
+        //RCTRefreshControl.configure({
+        //    node: this.refs['ScrollView'],
+        //    tintColor: '#e54847',
+        //    activityIndicatorViewColor: '#e54847'
+        //}, () => {
+        //    this._loadData();
+        //
+        //});
 
     },
 
@@ -135,9 +136,9 @@ var MovieIndexView = React.createClass({
         return (
             <View style={styles.container}>
 
-                <ScrollView ref='LIST_VIEW_REF'
-                            automaticallyAdjustContentInsets={false}
-                            style={{top: 64}} >
+                <ScrollView ref='ScrollView'
+
+                             >
 
                     {this._renderTopSlider()}
                     <ListView automaticallyAdjustContentInsets={false} scrollEnabled={false}
@@ -166,9 +167,9 @@ var MovieIndexView = React.createClass({
                     isLoading : false
                 });
 
-                this.setTimeout(() => {
-                    RCTRefreshControl.endRefreshing(this.refs['LIST_VIEW_REF']);
-                }, 1000);
+                //this.setTimeout(() => {
+                //    RCTRefreshControl.endRefreshing(this.refs['ScrollView']);
+                //}, 1000);
 
             })
             .catch((ex) =>{
@@ -240,10 +241,10 @@ var MovieIndexView = React.createClass({
                         <View style={{flex : 1}}></View>
 
                         <View style={styles.movieOpera} >
-                            <TouchableHighlight  onPress={ () =>  this._getTicket(movie) }
-                                                 style={[cmStyles.btn_outline,cmStyles.btn_outline_red]} underlayColor="#e54847">
+                            <Text style={[cmStyles.btn_outline,cmStyles.btn_outline_red]}>
                                 <Text style={cmStyles.btn_outline_red_text}>购票</Text>
-                            </TouchableHighlight>
+                            </Text>
+
                         </View>
                     </View>
                 </View>
@@ -254,16 +255,14 @@ var MovieIndexView = React.createClass({
 
     render : function(){
 
-        //if(this.state.isLoading){
-        //    return this._renderLoading();
-        //}
-        //else{
-        //    return this._renderMovie();
-        //}
+        if(this.state.isLoading){
+            return this._renderLoading();
+        }
+        else{
+            return this._renderMovie();
+        }
 
-        return this._renderMovie();
-
-
+        //return this._renderMovie();
 
     }
 });

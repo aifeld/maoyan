@@ -37,9 +37,31 @@ var CinemaView = React.createClass({
 
     //首次渲染之后
     componentDidMount : function(){
-
+        this._loadData();
     },
 
+    _loadData : function(){
+        MaoYanService.getMovieHome()
+            .then((res) => {
+
+                if(res.status != '0'){
+                    alert("服务器错误!");
+                    return;
+                }
+
+                var result = res.data;
+
+                this.setState({
+                    dataSource : this.state.dataSource.cloneWithRows(result),
+                    isLoading : false
+                });
+
+            })
+            .catch((ex) =>{
+                alert(ex);
+            })
+            .done();
+    },
 
     _renderLoading : function(){
         return(
@@ -60,7 +82,7 @@ var CinemaView = React.createClass({
 
     _renderMovie : function(){
         return (
-            <View style={styles.container}>
+            <View style={cmStyles.container}>
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow ={this._renderRow.bind(this)}
@@ -77,28 +99,46 @@ var CinemaView = React.createClass({
     _renderRow : function(rowData,sectionID,rowID){
         //console.log("render row ");
 
-
-
+        var obj = rowData;
 
         return (
             <View style={styles.movieRow}>
+
+                <View style={styles.movieLeft}>
+
+                    <Text>奥斯卡盛龙国际</Text>
+                    <View>
+                        <Text>座</Text>
+                        <Text>猫眼价9.9</Text>
+                        <Text>9.9元</Text>
+                    </View>
+
+                    <Text>
+                        未央区盛龙广场8号
+                    </Text>
+
+                </View>
+
+                <View style={styles.movieRight}>
+
+
+                    <Text>1.2km</Text>
+                </View>
+
+
             </View>
 
         );
     },
     render : function(){
 
-        //if(this.state.isLoading){
-        //    return this._renderLoading();
-        //}
-        //else{
-        //    return this._renderMovie();
-        //}
+        if(this.state.isLoading){
+            return this._renderLoading();
+        }
+        else{
+            return this._renderMovie();
+        }
 
-        return (
-
-            <View></View>
-        )
 
     }
 });

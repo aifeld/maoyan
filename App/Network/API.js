@@ -34,6 +34,13 @@ var MaoYanService   = {
         return  fetch(BaseUrl+"/movie/"+movieId+".json")
                     .then(status)
                     .then(json);;
+    },
+
+    //查处影院
+    getMovieHome : function(){
+        return fetch(BaseUrl+"/cinemas.json")
+            .then(status)
+            .then(json);
     }
 
 
