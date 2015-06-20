@@ -99,15 +99,19 @@ var maoyan = React.createClass({
             default :
                 componentView = UserView;
                 break;
-
-
         }
 
         return (
             <View style={styles.container}>
+
                 <NavigatorIOS
+                    barTintColor='#e54847'
+                    titleTextColor='#fff'
+                    tintColor='#fff'
                     style={styles.nav}
                     initialRoute={{
+                            rightButtonIcon : require('image!search'),
+                            leftButtonTitle :    "西安",
                             component : componentView,
                             title : tabName,
                             passProps : {test : "111"}
@@ -182,11 +186,7 @@ var styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    tabBar: {
 
-        color: 'red',
-        tintColor: '#000'
-    },
     nav: {
         flex: 1
     },

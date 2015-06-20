@@ -5,12 +5,18 @@
 'use strict';
 
 var React = require('react-native');
+
+var NavigationBar = require('react-native-navbar');
+
 var {
     AppRegistry,
     StyleSheet,
     Text,
     NavigatorIOS,
     TabBarIOS,
+    SegmentedControlIOS,
+    Navigator,
+    TouchableOpacity,
     View,
     } = React;
 
@@ -20,11 +26,47 @@ var CinemaView = require("./App/View/Cinema/CinemaView");
 var DiscoverView = require("./App/View/Discover/DiscoverView");
 var UserView   = require("./App/View/User/UserView");
 
-
-var RCTRefreshControl = require('RCTRefreshControl');
-
 var Icon = require('Ionicons');
 
+var CustomTitle = React.createClass({
+    getInitialState : function(){
+
+        return {
+            values:['One','Two','Three'],
+            value:'Not selected',
+            selectedIndex:undefined
+        };
+    },
+    _onChange  :  function(event){
+        React.AlertIOS.alert(JSON.stringify(event.nativeEvent));
+        console.log(event);//debug console log here
+        this.setState({
+            selectedIndex:event.nativeEvent.selectedSegmentIndex
+        });
+    },
+
+    _onValueChange : function(value){
+        this.setState({
+            value:value
+        });
+    },
+
+    render  : function() {
+        var am = ['One','Two','Three'];
+        return (
+            <View style={{width:100}} >
+                <SegmentedControlIOS
+                    tintColor="red"
+                    values={am}
+                    selectedIndex={1}
+                    onChange={this._onChange}
+                    onValueChange={this._onValueChange}
+                    />
+            </View>
+        );
+    }
+
+});
 
 
 var maoyan = React.createClass({
@@ -103,28 +145,46 @@ var maoyan = React.createClass({
             default :
                 componentView = UserView;
                 break;
+
         }
 
         return (
+
             <View style={styles.container}>
+            <Navigator
 
-                <NavigatorIOS
-                    barTintColor='#e54847'
-                    titleTextColor='#fff'
-                    tintColor='#fff'
+                renderScene={this.renderScene}
+                initialRoute={{
 
-                    style={styles.nav}
-                    initialRoute={{
-                            rightButtonIcon : require('image!search'),
-                            leftButtonTitle :    "西安",
-                            component : componentView,
-                            title : tabName,
-                            passProps : {test : "111"}
-                    }}
-                    />
-            </View>
+                 component: componentView,
+                 navigationBar: <NavigationBar
+            customTitle={<CustomTitle/>}
+          />
+        }}
+                />
+
+                </View>
+
+
         );
 
+    },
+
+
+    renderScene : function(route, navigator) {
+        var Component = route.component;
+        var navBar = route.navigationBar;
+
+        if (navBar) {
+            navBar = React.addons.cloneWithProps(navBar, { navigator, route });
+        }
+
+        return (
+            <View style={styles.navigator}>
+                {navBar}
+                <Component navigator={navigator} route={route} />
+            </View>
+        );
     },
     render: function () {
         console.log("render....");

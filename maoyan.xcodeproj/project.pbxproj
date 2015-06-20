@@ -30,6 +30,7 @@
 		16E0D4401B33E01300C7CDB4 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16E0D42D1B33E00600C7CDB4 /* Ionicons.ttf */; };
 		16E0D4411B33E01300C7CDB4 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16E0D42E1B33E00600C7CDB4 /* MaterialIcons.ttf */; };
 		16E0D4421B33E01300C7CDB4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16E0D42F1B33E00600C7CDB4 /* Zocial.ttf */; };
+		16E6864E1B354C2200AC68B4 /* libRCTRefreshControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E686471B354C0400AC68B4 /* libRCTRefreshControl.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,13 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		16E686461B354C0400AC68B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16E6863C1B354C0400AC68B4 /* RCTRefreshControl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTRefreshControl;
+		};
 		16FB1B031B2F041A00A899DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 16FB1AFE1B2F041A00A899DB /* RCTAnimationExperimental.xcodeproj */;
@@ -155,6 +163,7 @@
 		16E0D42D1B33E00600C7CDB4 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
 		16E0D42E1B33E00600C7CDB4 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		16E0D42F1B33E00600C7CDB4 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		16E6863C1B354C0400AC68B4 /* RCTRefreshControl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTRefreshControl.xcodeproj; path = "node_modules/react-refresh-control/RCTRefreshControl.xcodeproj"; sourceTree = "<group>"; };
 		16FB1AFE1B2F041A00A899DB /* RCTAnimationExperimental.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimationExperimental.xcodeproj; path = "node_modules/react-native/Libraries/Animation/RCTAnimationExperimental.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -182,6 +191,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				16E6864E1B354C2200AC68B4 /* libRCTRefreshControl.a in Frameworks */,
 				16E0D3DD1B33DAFC00C7CDB4 /* libRNVectorIcons.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +317,14 @@
 			path = "node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
+		16E6863D1B354C0400AC68B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				16E686471B354C0400AC68B4 /* libRCTRefreshControl.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		16FB1AFF1B2F041A00A899DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +344,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				16E6863C1B354C0400AC68B4 /* RCTRefreshControl.xcodeproj */,
 				16E0D3CC1B33DAEC00C7CDB4 /* RNVectorIcons.xcodeproj */,
 				16FB1AFE1B2F041A00A899DB /* RCTAnimationExperimental.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -462,6 +481,10 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
+					ProductGroup = 16E6863D1B354C0400AC68B4 /* Products */;
+					ProjectRef = 16E6863C1B354C0400AC68B4 /* RCTRefreshControl.xcodeproj */;
+				},
+				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
@@ -556,6 +579,13 @@
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 16E0D3DB1B33DAEC00C7CDB4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		16E686471B354C0400AC68B4 /* libRCTRefreshControl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTRefreshControl.a;
+			remoteRef = 16E686461B354C0400AC68B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		16FB1B041B2F041A00A899DB /* libRCTAnimationExperimental.a */ = {

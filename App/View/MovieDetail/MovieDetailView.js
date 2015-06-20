@@ -230,8 +230,7 @@ var MovieDetailView = React.createClass({
         return (
             <ScrollView horizontal={false}
                         scrollEventThrottle={200}
-                        contentInset={{top: 0}}
-                >
+                        contentInset={{top: 0}}  >
 
                 {renderTop}
 
